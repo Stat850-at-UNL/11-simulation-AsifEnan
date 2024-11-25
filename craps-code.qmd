@@ -1,6 +1,7 @@
 ---
 title: "Craps Simulation"
 format: html
+author: Asif Enan 
 ---
 
 In this document, you should create, code, and demonstrate each function you described in [`pseudocode.qmd`](pseudocode.qmd). File your functions under the appropriate header. Each function should have its own code chunk, which is properly set up with the appropriate programming language indicated. I have provided skeleton code chunks for your required functions using R syntax, but you are free to use Python or any other language covered in class. Please delete or fill in my chunks with your own code.
@@ -9,7 +10,7 @@ Make sure this document compiles before you submit your answers.
 
 # Helper Functions
 
-```{r}
+```{r, warning=F, message=F}
 library(tidyverse)
 ```
 

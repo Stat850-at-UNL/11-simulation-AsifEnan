@@ -1,6 +1,6 @@
 ---
 title: "Pseudocode: Craps Simulation"
-editor: Asif Enan
+editor: 
   markdown: 
     wrap: sentence
 ---
@@ -11,15 +11,18 @@ I have scaffolded this set of instructions very carefully.
 
 Please proceed sequentially through this document, and do not move onto the next step until you have completed the present step.
 
-My goal in this class is to teach you how to solve hard problems by breaking them down. This assignment is the culmination of that process, where you demonstrate that you have the tools to solve these hard problems.
+My goal in this class is to teach you how to solve hard problems by breaking them down.
+This assignment is the culmination of that process, where you demonstrate that you have the tools to solve these hard problems.
 
 You WILL get confused and miss steps if you do not follow the instructions sequentially.
 
 # Understanding the game flow
 
-ChatGPT provides the following pseudocode for playing a game of craps. You can see the full script [here](deps/ChatGPT%20Pseudocode.html) (it goes a bit beyond pseudocode).
+ChatGPT provides the following pseudocode for playing a game of craps.
+You can see the full script [here](deps/ChatGPT%20Pseudocode.html) (it goes a bit beyond pseudocode).
 
-Note that this pseudocode seems to be relatively Pythonic. You will have the opportunity to write (somewhat different) pseudocode later, but for now, work with this pseudocode to develop an understanding of the game.
+Note that this pseudocode seems to be relatively Pythonic.
+You will have the opportunity to write (somewhat different) pseudocode later, but for now, work with this pseudocode to develop an understanding of the game.
 
 ``` python
 function playCraps():
@@ -93,15 +96,20 @@ function playAgain():
 
 ## Flowchart {#sec-flowchart}
 
-Create a flowchart illustrating how the game unfolds, using the function names provided in the ChatGPT code. Include this as a PNG file in the repository and link to it here.
+Create a flowchart illustrating how the game unfolds, using the function names provided in the ChatGPT code.
+Include this as a PNG file in the repository and link to it here.
 
 ![**My flowchart of the craps game**](figure/myflowchart.png)
 
 ## Single game data structure {#sec-single-game-data}
 
-It's one thing to write a set of instructions/pseudocode for how to *play* a game, but it's a separate task to figure out how to **computationally simulate** the game. For instance, in a simulation you often need to keep track of each move, and then compute summary statistics about the game to use when compiling simulation data.
+It's one thing to write a set of instructions/pseudocode for how to *play* a game, but it's a separate task to figure out how to **computationally simulate** the game.
+For instance, in a simulation you often need to keep track of each move, and then compute summary statistics about the game to use when compiling simulation data.
 
-Draw/sketch a tabular data structure that can store the results as you progress through a single game of craps. Keep track of how many times you've rolled the dice. What additional columns do you need? Hint: Each roll of the 2 dice should be a row.
+Draw/sketch a tabular data structure that can store the results as you progress through a single game of craps.
+Keep track of how many times you've rolled the dice.
+What additional columns do you need?
+Hint: Each roll of the 2 dice should be a row.
 
 | Roll_Number | Dice_Total | Phase    | Point_Value | Outcome_of_Roll | Match_Outcome |
 |-------------|------------|----------|-------------|-----------------|---------------|
@@ -119,7 +127,8 @@ Hint: Each game of craps should yield a single row in your table.
 
 # Simulating a game of craps {#sec-simulation-pseudocode}
 
-In this part of the assignment, you'll spend the time figuring out how to implement craps as a computational simulation by adapting the ChatGPT pseudocode. Your code structure will be different from ChatGPT's structure because you are going to generate data to estimate various conditional probabilities.
+In this part of the assignment, you'll spend the time figuring out how to implement craps as a computational simulation by adapting the ChatGPT pseudocode.
+Your code structure will be different from ChatGPT's structure because you are going to generate data to estimate various conditional probabilities.
 
 **Requirement 1:**\
 You must have a function to simulate a single craps game, `simulate_craps_game`, which returns a data frame with at least the following columns:
@@ -144,7 +153,8 @@ Think carefully about how you want to structure your code - do you want to retur
 
 ## Planning Helper Functions {#sec-helper}
 
-Consider helper functions you will need to write to implement the game of craps. For each function, define the input, output, and provide a comment to explain what the function will do.
+Consider helper functions you will need to write to implement the game of craps.
+For each function, define the input, output, and provide a comment to explain what the function will do.
 
 Here is pseudocode for a function that simulates the roll of the dice in craps to demonstrate the required format.
 
@@ -160,13 +170,16 @@ Put each function in a separate code block.
 
 ## Planning Main Functions {#sec-main-function-diagram}
 
-Update your flowchart from @sec-flowchart to match the requirements of this section. Your flowchart should have separate blocks for each function. Which helper function(s) will be called inside each required function?
+Update your flowchart from @sec-flowchart to match the requirements of this section.
+Your flowchart should have separate blocks for each function.
+Which helper function(s) will be called inside each required function?
 
 <!-- Include a picture here using markdown image format. Save the picture in your repository and remember to commit it! -->
 
 ## Simulating a full game {#sec-game-pseudocode}
 
-Fill in the pseudocode below to specify how you would return the single game data structure you created in @sec-single-game-data above. Remember to fill in the input parameter inside the function definition as well as the comment.
+Fill in the pseudocode below to specify how you would return the single game data structure you created in @sec-single-game-data above.
+Remember to fill in the input parameter inside the function definition as well as the comment.
 
 ```         
 simulate_craps_game <- function() {
@@ -200,4 +213,7 @@ run_craps_simulation <- function(N) {
 
 ## Planning for implementation
 
-What parts are still missing for you to write code implementing craps based on your pseudocode? What do you expect you will need to do before/during the coding process? Make a plan for next week's work. Where will you start?
+What parts are still missing for you to write code implementing craps based on your pseudocode?
+What do you expect you will need to do before/during the coding process?
+Make a plan for next week's work.
+Where will you start?
