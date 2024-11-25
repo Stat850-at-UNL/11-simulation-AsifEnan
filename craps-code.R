@@ -1,35 +1,17 @@
----
-title: "Craps Simulation"
-format: html
----
+# Function to simulate a roll of two six-sided dice
 
-In this document, you should create, code, and demonstrate each function you described in [`pseudocode.qmd`](pseudocode.qmd). File your functions under the appropriate header. Each function should have its own code chunk, which is properly set up with the appropriate programming language indicated. I have provided skeleton code chunks for your required functions using R syntax, but you are free to use Python or any other language covered in class. Please delete or fill in my chunks with your own code.
 
-Make sure this document compiles before you submit your answers.
-
-# Helper Functions
-
-```{r}
-library(tidyverse)
-```
-
-## `roll_dice`
-
-```{r}
 roll_dice <- function() {
   sample(1:6, 2, replace = T) %>% sum()
 }
-```
 
-```{r}
-roll_dice()
-```
 
-# Main Functions
 
-## `simulate_craps_game`
 
-```{r}
+# Function to play a single round and return a detailed dataframe
+
+
+
 simulate_craps_game <- function() {
   # Creating an empty df with relevant columns [this will get filled up as we progress]
   rolls_log <- data.frame(
@@ -106,17 +88,15 @@ simulate_craps_game <- function() {
     } #while loop end
   } #else statement end
 }
-```
 
-```{r}
-simulate_craps_game() #run this multiple times to get different results
-```
 
-## `summarize_craps_game`
 
-This uses the results of the `` `simulate_craps_game()` `` to summarize the game into one row.
 
-```{r}
+
+
+
+#Function to summarize a single crap game
+
 summarize_craps_game <- function(game_log) {
   num_rolls <- nrow(game_log) #total throws in that game
   
@@ -138,17 +118,16 @@ summarize_craps_game <- function(game_log) {
   return(summary)
 }
 
-```
 
-```{r}
-simulate_craps_game() %>% summarize_craps_game() #run this also multiple times
-```
 
-## `run_craps_simulation`
 
-How many times you want to play? Put in the number.
 
-```{r}
+
+
+#Function to simulate N number of games
+
+
+
 run_craps_simulation <- function(N) {
   # creating an empty dataframe to store game summaries
   simulation_results <- data.frame(
@@ -175,9 +154,5 @@ run_craps_simulation <- function(N) {
   
   return(simulation_results)
 }
-```
 
-```{r}
-result <- run_craps_simulation(N=5) # demonstrate result
-result
-```
+

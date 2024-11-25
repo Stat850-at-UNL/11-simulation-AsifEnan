@@ -1,0 +1,87 @@
+---
+title: "simulation"
+author: "Asif Enan"
+format: html
+editor: visual
+---
+
+## Using simulation to answer some probability questions
+
+```{r}
+library(tidyverse)
+source("craps-code.R")
+```
+
+### 1) What happens to the probability of winning for increasing number of games?
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+# Set up simulation counts
+# simulation_sizes <- seq(100,5000,100) this was taking a lot of time so I am gonna use a shorter version of this
+simulation_sizes <- seq(100,2000,50)
+
+# Running simulations and calculate winning probabilities for each simulations_size
+win_probabilities <- map_dfr(simulation_sizes, ~ {
+  # Simulating N games
+  simulation_result <- run_craps_simulation(.x)
+  
+  # Calculating win probability
+  win_prob <- mean(simulation_result$Match_Outcome == "Win")
+  
+  # Returning the results as a tibble
+  tibble(Simulation_Size = .x, Win_Probability = win_prob)
+})
+
+
+print(win_probabilities)
+
+
+```
+
+Graphing the results from above
+
+```{r}
+win_probabilities %>%
+  ggplot(aes(x=Simulation_Size,y=Win_Probability))+
+  geom_line()
+```
+
+The probability of winning seems to be stabilizing \[i.e. variations getting less\] as we increase the simulation size
+
+### 2) If we play 20 thousand game of craps, which of the 4 outcomes occurs the most?
+
+```{r}
+simulation_result20k <- run_craps_simulation(20000)
+
+# Categorizing game outcomes
+outcome_breakdown <- simulation_result20k %>%
+  mutate(Outcome_Category = case_when(
+    is.na(Point_Value) & Match_Outcome == "Win" ~ "Natural Win",
+    is.na(Point_Value) & Match_Outcome == "Loss" ~ "Craps Loss",
+    !is.na(Point_Value) & Match_Outcome == "Win" ~ "Point Hit Win",
+    !is.na(Point_Value) & Match_Outcome == "Loss" ~ "Seven-Out Loss"
+  )) %>%
+  group_by(Outcome_Category) %>%
+  summarize(Count = n(),
+            Probability = Count / nrow(simulation_result))
+
+# View results
+print(outcome_breakdown)
+
+```
+
+We see that the \`Seven-out Loss\` occurs the most having the highest probability.
+
+### 3) If we play 20 thousand game of craps, what is the average number of rolls per game?
+
+```{r}
+average_rolls <- simulation_result20k %>%
+  summarize(Average_Number_of_Rolls = mean(Number_of_Rolls))
+
+# View result
+print(average_rolls)
+
+```
+
+Average number of rolls per game is 3.367 which means by that time either Point-hit Win or Seven-Out Loss
